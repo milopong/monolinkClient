@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_popup_schedule"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="282dp"
+        android:layout_height="49dp"
+        android:background="#71dbfd"
+        android:gravity="center"
+        android:text="공개범위"
+        android:textColor="#ffffff"
+        android:textSize="24sp" />
+
+
+    <Button
+        android:id="@+id/popup_closed"
+        android:layout_width="176dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="26dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/closed" />
+    
+     <Button
+        android:id="@+id/popup_friend"
+        android:layout_width="176dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/friend" />
+     
+      <Button
+        android:id="@+id/popup_public"
+        android:layout_width="176dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="25dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/popup_public" />
+
+
+</LinearLayout>

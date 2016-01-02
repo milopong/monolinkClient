@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Monolink</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="register_title">Register</string>
+    <string name="login_title">Login</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="pwd">Password</string>
+    <string name="title_service">서비스 이용약관</string>
+    <string name="contents_service">이 약관은 (주)모노이즘(이하 "회사")에서 제공하는 서비스 "모노링크"의 이용과 관련하여 회사와 고객간의 권리, 의무 및 기타 필요한 제반 사항을 정하고 있습니다. 서비스를 이용하시기 전에 이 약관을 주의 깊게 읽어 보시기 바랍니다.</string>
+    <string name="title_privacy">개인정보 취급방침</string>
+    <string name="contents_privacy">(주)모노이즘(이하 "회사")는 원활한 서비스의 이용을 위하여 다음과 같이 이용자의 개인정보를 수집, 이용함에 있어 정보통신망 이용촉진 및 정보보호 등에 관할 법률, 개인정보 보호법 등 관련 법령에 따라 개인정보 수집 및 이용에 관하여 동의를 받고 있습니다.</string>
+    <string name="agree"> 동의합니다.(필수항목)</string>
+    <string name="logout">로그아웃</string>
+    <string name="daily">일간</string>
+    <string name="weekly">주간</string>
+    <string name="monthly">월간</string>
+    <string name="month">월</string>
+    <string name="menu_close">닫기</string>
+    <string name="service_info">서비스 &amp; 문의</string>
+
+</resources>

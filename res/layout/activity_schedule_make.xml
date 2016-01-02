@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="vertical" >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#6D6E70"
+            android:minHeight="?attr/actionBarSize" >
+
+            <TextView
+                android:id="@+id/textTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="일정만들기"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </android.support.v7.widget.Toolbar>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:text="일정이름"
+            android:textColor="#6D6E70"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_schedule_name"
+            android:layout_width="fill_parent"
+            android:layout_height="37dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:hint="이름을 입력해 주세요"
+            android:textColor="#6D6E70"
+            android:textColorHint="#C1C1C1"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="37dp"
+            android:text="시간"
+            android:textColor="#6D6E70"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_schedule_start"
+                android:layout_width="152dp"
+                android:layout_height="37dp"
+                android:layout_gravity="center"
+                android:background="@drawable/border"
+                android:text="시작시간"
+                android:textColor="#C1C1C1"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btn_schedule_end"
+                android:layout_width="152dp"
+                android:layout_height="37dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="21dp"
+                android:background="@drawable/border"
+                android:text="종료시간"
+                android:textColor="#C1C1C1"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="37dp"
+            android:text="장소"
+            android:textColor="#6D6E70"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btn_schedule_place"
+            android:layout_width="fill_parent"
+            android:layout_height="37dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/border"
+            android:hint="장소를 선택해 주세요"
+            android:textColor="#6D6E70"
+            android:textColorHint="#C1C1C1"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="37dp"
+            android:text="친구"
+            android:textColor="#6D6E70"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btn_schedule_friend"
+            android:layout_width="fill_parent"
+            android:layout_height="37dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/border"
+            android:hint="친구를 선택해 주세요"
+            android:textColor="#6D6E70"
+            android:textColorHint="#C1C1C1"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="37dp"
+            android:text="사진"
+            android:textColor="#6D6E70"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/schedule_photo"
+            android:layout_width="fill_parent"
+            android:layout_height="300dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/border"
+            android:hint="사진을 선택해 주세요"
+            android:textColor="#6D6E70"
+            android:textColorHint="#C1C1C1"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="37dp"
+            android:text="메모"
+            android:textColor="#6D6E70"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_schedule_memo"
+            android:layout_width="fill_parent"
+            android:layout_height="78dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:hint="메모사항,관심사 태그를 입력하세요.  ex)#스터디  #exo  #토익  # 면접"
+            android:textColor="#6D6E70"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/bt_make_schedule"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="39dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:background="@color/base"
+            android:text="저장하기"
+            android:textColor="#6D6E70"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</ScrollView>

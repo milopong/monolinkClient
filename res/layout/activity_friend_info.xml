@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/calendar_mode_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="일별 스케쥴"
+         />
+    
+    <TextView
+        android:id="@+id/this_month_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textColor="#888888" />
+    
+    <LinearLayout
+        android:id="@+id/fragment_mainContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_popup_schedule"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="282dp"
+        android:layout_height="49dp"
+        android:background="#71dbfd"
+        android:gravity="center"
+        android:text="일정 변경"
+        android:textColor="#ffffff"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/schedule_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:gravity="center_horizontal"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/schedule_edit"
+        android:layout_width="176dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="26dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/edit" />
+    
+     <Button
+        android:id="@+id/schedule_delete"
+        android:layout_width="176dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/delete" />
+     
+      <Button
+        android:id="@+id/schedule_bookmark"
+        android:layout_width="176dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="25dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/popup_bookmark" />
+
+
+</LinearLayout>

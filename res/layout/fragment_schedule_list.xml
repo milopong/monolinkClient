@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:arc="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ExpandableListView
+        android:id="@+id/exp_list"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffffff"
+        android:childDivider="#9CD6F5"
+        android:divider="#ffffff"
+        android:dividerHeight="1px" >
+    </ExpandableListView>
+
+</LinearLayout>

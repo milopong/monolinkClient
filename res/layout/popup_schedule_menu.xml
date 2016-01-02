@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_popup_schedule"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#00000000"
+    android:orientation="vertical" >
+
+
+
+    <Button
+        android:id="@+id/showList"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="280dp"
+        android:layout_marginEnd="21dp"
+        android:layout_gravity="end"
+        android:background="@drawable/home_detail_list" />
+    
+     
+      <Button
+        android:id="@+id/showCalendar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="21dp"
+        android:layout_gravity="end"
+        android:background="@drawable/home_detail_calendar" />
+      
+      <Button
+        android:id="@+id/showFacvorite"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="21dp"
+        android:layout_gravity="end"
+        android:background="@drawable/home_detail_favorite" />
+      
+      <Button
+        android:id="@+id/menuBtn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/home_list" />
+
+
+</LinearLayout>

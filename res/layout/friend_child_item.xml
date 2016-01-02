@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="105dp"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:paddingEnd="10dp"
+    android:paddingStart="10dp" >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingEnd="7dp"
+        android:paddingStart="7dp" >
+
+        <com.milopong.monolink.ui.de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/friend_photo_iv"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="7dp"
+            app:border_color="@color/light"
+            app:border_width="2dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:paddingEnd="7dp"
+        android:paddingStart="7dp" >
+
+        <TextView
+            android:id="@+id/friend_name_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingEnd="7dp"
+        android:paddingStart="7dp" >
+
+        <Button
+            android:id="@+id/friend_add_btn"
+            android:layout_gravity="end"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
+
+</LinearLayout>
