@@ -246,7 +246,7 @@ public class ShareScheduleFragment extends Fragment implements OnClickListener {
 
 			/* 방장 사진 */
 			viewHolder.photoIv.setVisibility(View.GONE);
-			/*DisplayMetrics dm = getActivity().getApplicationContext().getResources().getDisplayMetrics();
+			DisplayMetrics dm = getActivity().getApplicationContext().getResources().getDisplayMetrics();
 			Bitmap photo = ImageLoader.getInstance()
 					.loadImageSync(MonoURL.SERVER_URL + "images/schedule/" + mData.get(position).getPhoto());
 			int width = dm.widthPixels;
@@ -259,7 +259,7 @@ public class ShareScheduleFragment extends Fragment implements OnClickListener {
 			viewHolder.photoIv.setLayoutParams(layoutParams);
 			ImageLoader.getInstance().displayImage(
 					MonoURL.SERVER_URL + "images/schedule/" + mData.get(position).getPhoto(), viewHolder.photoIv,
-					ImageOption.options);*/
+					ImageOption.options);
 
 			/* 일정 이름 */
 			viewHolder.nameTv.setText(getItem(position).getName());

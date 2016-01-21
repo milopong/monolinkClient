@@ -3,6 +3,9 @@ package com.milopong.monolink.activity;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -26,15 +29,19 @@ import com.milopong.monolink.model.Member;
 import com.milopong.monolink.utils.MonoURL;
 import com.milopong.monolink.utils.Utility;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Bitmap.CompressFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.MediaStore.Images;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -53,14 +60,14 @@ public class MakeScheduleActivity extends ActionBarActivity implements OnClickLi
 	private String lineEnd = "\r\n";
 	private String twoHyphens = "--";
 	private String boundary = "*****";
-	final int REQ_CODE_SELECT_IMAGE = 100;
 
 	private File file;
 	private static final int SELECT_PLACE = 1;
 	private static final int SELECT_FRIEND = 2;
 	private static final int PICK_FROM_CAMERA = 3;
 	private static final int PICK_FROM_ALBUM = 4;
-	private static final int CROP_FROM_CAMERA = 5;
+	private static final int REQ_CODE_SELECT_IMAGE = 5;
+	private Bitmap image_bitmap;
 	private Uri mImageCaptureUri;
 
 	private EditText scheduleName;
@@ -138,41 +145,36 @@ public class MakeScheduleActivity extends ActionBarActivity implements OnClickLi
 				}
 				break;
 
-			case CROP_FROM_CAMERA:
-				final Bundle extras = data.getExtras();
+			case REQ_CODE_SELECT_IMAGE:
+				if (resultCode == Activity.RESULT_OK) {
+					try {
+						mImageCaptureUri = data.getData();
+						image_bitmap = Images.Media.getBitmap(getContentResolver(), mImageCaptureUri);
+						File file = new File(Environment.getExternalStorageDirectory(), "monoProfile.jpg");
+						FileOutputStream out = new FileOutputStream(file);
 
-				if (extras != null) {
-					Bitmap photo = extras.getParcelable("data");
-					scheduleIv.setImageBitmap(photo);
+						int height = image_bitmap.getHeight();
+						int width = image_bitmap.getWidth();
+
+						int convertWidth = (int)(326 * Resources.getSystem().getDisplayMetrics().density);
+						int convertHeight = (int)(100 * Resources.getSystem().getDisplayMetrics().density);
+						image_bitmap = Bitmap.createScaledBitmap(image_bitmap, convertWidth, convertHeight, true);
+
+						image_bitmap.compress(CompressFormat.JPEG, 70, out);
+
+						// 배치해놓은 ImageView에 set
+						scheduleIv.setImageBitmap(image_bitmap);
+
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
-
-				// 임시 파일 삭제
-				File f = new File(mImageCaptureUri.getPath());
-				if (f.exists()) {
-					f.delete();
-				}
-				break;
-
-			case PICK_FROM_ALBUM:
-				// 이후의 처리가 카메라와 같으므로 일단 break없이 진행합니다.
-				// 실제 코드에서는 좀더 합리적인 방법을 선택하시기 바랍니다.
-
-				mImageCaptureUri = data.getData();
-
-			case PICK_FROM_CAMERA:
-				Intent intent = new Intent("com.android.camera.action.CROP");
-				intent.setDataAndType(mImageCaptureUri, "image/*");
-
-				intent.putExtra("crop", "true"); // 모든 이미지
-				intent.putExtra("aspectX", 1);
-				intent.putExtra("aspectY", 1);
-				intent.putExtra("noFaceDetection", true);
-				intent.putExtra("scale", true);
-				intent.putExtra("return-data", true);
-				startActivityForResult(intent, CROP_FROM_CAMERA);
 				break;
 			}
-
 		}
 
 	}
@@ -251,7 +253,7 @@ public class MakeScheduleActivity extends ActionBarActivity implements OnClickLi
 		intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, mImageCaptureUri);
 		// 특정기기에서 사진을 저장못하는 문제가 있어 다음을 주석처리 합니다.
 		// intent.putExtra("return-data", true);
-		startActivityForResult(intent, PICK_FROM_CAMERA);
+		startActivityForResult(intent, REQ_CODE_SELECT_IMAGE);
 	}
 
 	/**
@@ -261,7 +263,7 @@ public class MakeScheduleActivity extends ActionBarActivity implements OnClickLi
 		// 앨범 호출
 		Intent intent = new Intent(Intent.ACTION_PICK);
 		intent.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
-		startActivityForResult(intent, PICK_FROM_ALBUM);
+		startActivityForResult(intent, REQ_CODE_SELECT_IMAGE);
 	}
 
 	public void DoFileUpload(String apiUrl, int scheduleNo, String absolutePath) {

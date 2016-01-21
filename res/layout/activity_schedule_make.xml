@@ -154,7 +154,7 @@
         <ImageView
             android:id="@+id/schedule_photo"
             android:layout_width="fill_parent"
-            android:layout_height="300dp"
+            android:layout_height="100dp"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
