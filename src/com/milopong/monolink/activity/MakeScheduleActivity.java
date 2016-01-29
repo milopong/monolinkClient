@@ -66,7 +66,6 @@ public class MakeScheduleActivity extends ActionBarActivity implements OnClickLi
 	private static final int SELECT_FRIEND = 2;
 	private static final int PICK_FROM_CAMERA = 3;
 	private static final int PICK_FROM_ALBUM = 4;
-	private static final int REQ_CODE_SELECT_IMAGE = 5;
 	private Bitmap image_bitmap;
 	private Uri mImageCaptureUri;
 
@@ -145,22 +144,59 @@ public class MakeScheduleActivity extends ActionBarActivity implements OnClickLi
 				}
 				break;
 
-			case REQ_CODE_SELECT_IMAGE:
+			case PICK_FROM_ALBUM:
 				if (resultCode == Activity.RESULT_OK) {
 					try {
 						mImageCaptureUri = data.getData();
 						image_bitmap = Images.Media.getBitmap(getContentResolver(), mImageCaptureUri);
-						File file = new File(Environment.getExternalStorageDirectory(), "monoProfile.jpg");
+						String url = "tmp_" + String.valueOf(System.currentTimeMillis()) + ".jpg";
+						file = new File(Environment.getExternalStorageDirectory(), url);
 						FileOutputStream out = new FileOutputStream(file);
 
-						int height = image_bitmap.getHeight();
 						int width = image_bitmap.getWidth();
+						int height = image_bitmap.getHeight();
 
-						int convertWidth = (int)(326 * Resources.getSystem().getDisplayMetrics().density);
-						int convertHeight = (int)(100 * Resources.getSystem().getDisplayMetrics().density);
+						int photoWidth = (int) (326 * Resources.getSystem().getDisplayMetrics().density);
+						int photoHeight = (int) (100 * Resources.getSystem().getDisplayMetrics().density);
+
+						int convertWidth = photoWidth;
+						int convertHeight = photoWidth * height / width;
+
 						image_bitmap = Bitmap.createScaledBitmap(image_bitmap, convertWidth, convertHeight, true);
-
 						image_bitmap.compress(CompressFormat.JPEG, 70, out);
+						image_bitmap = Bitmap.createBitmap(image_bitmap, 0, convertHeight / 4, photoWidth, photoHeight);
+
+						// 배치해놓은 ImageView에 set
+						scheduleIv.setImageBitmap(image_bitmap);
+
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				break;
+
+			case PICK_FROM_CAMERA:
+				if (resultCode == Activity.RESULT_OK) {
+					try {
+						image_bitmap = Images.Media.getBitmap(getContentResolver(), mImageCaptureUri);
+						FileOutputStream out = new FileOutputStream(file);
+
+						int width = image_bitmap.getWidth();
+						int height = image_bitmap.getHeight();
+
+						int photoWidth = (int) (326 * Resources.getSystem().getDisplayMetrics().density);
+						int photoHeight = (int) (100 * Resources.getSystem().getDisplayMetrics().density);
+
+						int convertWidth = photoWidth;
+						int convertHeight = photoWidth * height / width;
+
+						image_bitmap = Bitmap.createScaledBitmap(image_bitmap, convertWidth, convertHeight, true);
+						image_bitmap.compress(CompressFormat.JPEG, 70, out);
+						image_bitmap = Bitmap.createBitmap(image_bitmap, 0, convertHeight / 4, photoWidth, photoHeight);
 
 						// 배치해놓은 ImageView에 set
 						scheduleIv.setImageBitmap(image_bitmap);
@@ -177,6 +213,29 @@ public class MakeScheduleActivity extends ActionBarActivity implements OnClickLi
 			}
 		}
 
+	}
+
+	/**
+	 * 카메라에서 이미지 가져오기
+	 */
+	private void doTakePhotoAction() {
+		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		// 임시로 사용할 파일의 경로를 생성
+		String url = "tmp_" + String.valueOf(System.currentTimeMillis()) + ".jpg";
+		file = new File(Environment.getExternalStorageDirectory(), url);
+		mImageCaptureUri = Uri.fromFile(file);
+		intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, mImageCaptureUri);
+		startActivityForResult(intent, PICK_FROM_CAMERA);
+	}
+
+	/**
+	 * 앨범에서 이미지 가져오기
+	 */
+	private void doTakeAlbumAction() {
+		// 앨범 호출
+		Intent intent = new Intent(Intent.ACTION_PICK);
+		intent.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
+		startActivityForResult(intent, PICK_FROM_ALBUM);
 	}
 
 	public void registSchedule(RequestParams params) {
@@ -239,31 +298,6 @@ public class MakeScheduleActivity extends ActionBarActivity implements OnClickLi
 
 		return parcedData;
 
-	}
-
-	/**
-	 * 카메라에서 이미지 가져오기
-	 */
-	private void doTakePhotoAction() {
-		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		// 임시로 사용할 파일의 경로를 생성
-		String url = "tmp_" + String.valueOf(System.currentTimeMillis()) + ".jpg";
-		mImageCaptureUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), url));
-
-		intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, mImageCaptureUri);
-		// 특정기기에서 사진을 저장못하는 문제가 있어 다음을 주석처리 합니다.
-		// intent.putExtra("return-data", true);
-		startActivityForResult(intent, REQ_CODE_SELECT_IMAGE);
-	}
-
-	/**
-	 * 앨범에서 이미지 가져오기
-	 */
-	private void doTakeAlbumAction() {
-		// 앨범 호출
-		Intent intent = new Intent(Intent.ACTION_PICK);
-		intent.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
-		startActivityForResult(intent, REQ_CODE_SELECT_IMAGE);
 	}
 
 	public void DoFileUpload(String apiUrl, int scheduleNo, String absolutePath) {
@@ -349,6 +383,10 @@ public class MakeScheduleActivity extends ActionBarActivity implements OnClickLi
 					obj = new JSONObject(response);
 
 					if (obj.getString("stauts").equals("success")) {
+						File f = new File(mImageCaptureUri.getPath());
+						if (f.exists()) {
+							f.delete();
+						}
 					}
 
 				} catch (UnsupportedEncodingException e) {
